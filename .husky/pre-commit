@@ -1,0 +1,18 @@
+# Block direct commits to main — all changes go through a feature branch + PR.
+# (Mirrors mission-control / Polaris. Docs/config are allowed directly.)
+branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+if [ "$branch" = "main" ]; then
+  for f in $(git diff --cached --name-only); do
+    case "$f" in
+      .gitignore|*.md|.husky/*|.github/*) ;;
+      *)
+        echo "❌ Direct commits to main are blocked. Use a feature branch + PR."
+        echo "   (Allowed on main: *.md, .gitignore, .husky/*, .github/*)"
+        exit 1
+        ;;
+    esac
+  done
+fi
+
+# Lint staged TS/TSX (auto-fix).
+npx lint-staged
