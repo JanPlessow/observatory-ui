@@ -23,16 +23,39 @@ const nextConfig = { transpilePackages: ["observatory-ui"] };
 
 ## Use
 
-**1. Styles** — in your `globals.css`, after Tailwind:
+**1. Styles** — in your `globals.css`. The package ships **plain CSS** (token
+values + utilities); the Tailwind directives must live in your own CSS, because
+bundlers like Turbopack parse `@import`ed package CSS themselves and reject
+`@theme`/`@apply`/`@custom-variant`. So:
 
 ```css
 @import "tailwindcss";
+
+/* These two must be in YOUR css (Turbopack rejects them from node_modules). */
+@custom-variant dark (&:is(.dark *));
+@theme inline {
+  --color-background: var(--background);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-star: var(--star);
+  --color-chart-1: var(--chart-1);
+  /* …map every token you use; see polaris/src/app/globals.css for the full set… */
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+/* Token VALUES + base/component utilities (plain CSS — safe to import). */
 @import "observatory-ui/styles.css";
 @source "../node_modules/observatory-ui/src";
 ```
 
 Provide the font CSS vars yourself (e.g. via `next/font`): `--font-sans`,
 `--font-mono`, `--font-display`. Toggle the `dark` class on `<html>` for dark mode.
+The `@theme` mapping is stable boilerplate — copy it from Polaris's `globals.css`.
 
 **2. Components**
 
