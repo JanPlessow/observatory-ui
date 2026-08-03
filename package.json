@@ -25,20 +25,20 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "lucide-react": "^1.23.0",
+    "lucide-react": "^1.28.0",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^21.2.0",
+    "@commitlint/cli": "^21.2.1",
     "@commitlint/config-conventional": "^21.0.2",
     "@eslint/js": "^10.0.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^10.6.0",
-    "globals": "^17.7.0",
+    "eslint": "^10.8.0",
+    "globals": "^17.8.0",
     "husky": "^9.1.7",
-    "lint-staged": "^17.0.8",
-    "typescript": "^6",
-    "typescript-eslint": "^8.62.1"
+    "lint-staged": "^17.2.0",
+    "typescript": "^7",
+    "typescript-eslint": "^8.65.0"
   }
 }
