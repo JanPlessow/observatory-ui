@@ -1,7 +1,7 @@
 {
   "name": "observatory-ui",
   "version": "0.1.0",
-  "description": "The Observatory — shared design system (tokens + primitives) for Polaris and its apps.",
+  "description": "The Observatory \u2014 shared design system (tokens + primitives) for Polaris and its apps.",
   "private": false,
   "type": "module",
   "license": "MIT",
@@ -9,11 +9,17 @@
     ".": "./src/index.ts",
     "./styles.css": "./src/styles.css"
   },
-  "files": ["src"],
-  "sideEffects": ["*.css"],
+  "files": [
+    "src"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src tests",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -37,8 +43,10 @@
     "eslint": "^10.6.0",
     "globals": "^17.7.0",
     "husky": "^9.1.7",
+    "jsdom": "^29.1.1",
     "lint-staged": "^17.0.8",
     "typescript": "^6",
-    "typescript-eslint": "^8.62.1"
+    "typescript-eslint": "^8.62.1",
+    "vitest": "^4.1.11"
   }
 }
