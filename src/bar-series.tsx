@@ -1,6 +1,7 @@
 import { cn } from "./utils";
 
 interface Bar {
+  /** Axis caption. Not an identity: labels repeat across multi-week windows. */
   label: string;
   value: number;
 }
@@ -35,7 +36,7 @@ export function BarSeries({ data, unit, target, className }: BarSeriesProps) {
           const isLast = i === data.length - 1;
           return (
             <div
-              key={d.label}
+              key={i}
               className="group/bar flex flex-1 flex-col items-center justify-end gap-2"
               title={`${d.label}: ${d.value}${unit ?? ""}`}
             >
@@ -63,9 +64,9 @@ export function BarSeries({ data, unit, target, className }: BarSeriesProps) {
         })}
       </div>
       <div className="flex gap-2">
-        {data.map((d) => (
+        {data.map((d, i) => (
           <span
-            key={d.label}
+            key={i}
             className="flex-1 text-center text-[0.65rem] uppercase tracking-wide text-muted-foreground"
           >
             {d.label}
